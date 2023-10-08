@@ -13,6 +13,9 @@ export default {
         "medium-grey": "#7C8798",
       },
       textColor: {
+        "blue": "#345FF6",
+        "gunmetal": "#253347",
+        "darkGrey": "#5E6E85",
       },
       screens: {
       },
