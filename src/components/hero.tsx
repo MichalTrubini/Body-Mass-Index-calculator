@@ -26,12 +26,11 @@ const Hero = () => {
                 type="radio"
                 name="select"
                 id="metric"
-                className="hiddenRadioButton absolute left-hidden"
-                checked
+                className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck"
               />
               <label
                 htmlFor="metric"
-                className="text-gunmetal text-base font-semibold pl-12 customRadioButton"
+                className="text-gunmetal text-base font-semibold"
               >
                 Metric
               </label>
@@ -41,11 +40,11 @@ const Hero = () => {
                 type="radio"
                 name="select"
                 id="imperial"
-                className="hiddenRadioButton absolute left-hidden"
+                className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck"
               />
               <label
                 htmlFor="imperial"
-                className="text-gunmetal text-base font-semibold customRadioButton customRadioButtonImperial"
+                className="text-gunmetal text-base font-semibold "
               >
                 Imperial
               </label>

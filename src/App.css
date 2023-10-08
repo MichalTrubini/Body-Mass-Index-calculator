@@ -12,26 +12,16 @@ body {
   background: linear-gradient(90deg, #345ff6 0%, #587dff 100%);
 }
 
-.customRadioButton::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -3px;
-  width: 31px; 
-  height: 31px;
-  border: 1px solid #D8E2E7;
-  background-color: transparent;
-  border-radius: 50%; 
-  outline: none;
-  transition: all 1s; 
+.customCheck::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.12s ease-in-out;
+  box-shadow: inset 1em 1em #345FF6;
 }
 
-.customRadioButtonImperial::before {
-  left: -48px;
-}
-
-.hiddenRadioButton:checked + .customRadioButton::before {
-  background-color: #345FF6;
-  border: none;
-  outline: 5px solid rgba(52, 95, 246, 0.15);;
+.customCheck:checked::before {
+  transform: scale(1);
 }
