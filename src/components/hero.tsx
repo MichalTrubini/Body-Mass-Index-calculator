@@ -15,57 +15,85 @@ const Hero = () => {
           your overall health and well-being.
         </p>
       </div>
-      <div className="p-6 rounded-2xl">
-        <form>
+      <div className="bg-white m-6 rounded-2xl shadow-base relative bottom-42">
+        <form className="p-6" autoComplete="off">
           <h2 className="mb-6 text-2xl text-gunmetal font-semibold tracking-tighter">
             Enter your details below
           </h2>
-          <div className="flex justify-between">
+          <div className="flex justify-between mb-6 relative">
             <div className="flex items-center gap-4">
-              <input type="radio" name="metric" />
+              <input
+                type="radio"
+                name="select"
+                id="metric"
+                className="hiddenRadioButton absolute left-hidden"
+                checked
+              />
               <label
                 htmlFor="metric"
-                className="text-gunmetal text-base font-semibold"
+                className="text-gunmetal text-base font-semibold pl-12 customRadioButton"
               >
                 Metric
               </label>
             </div>
-            <div className="flex items-center gap-4">
-              <input type="radio" name="imperial" />
+            <div className="flex items-center gap-4 relative">
+              <input
+                type="radio"
+                name="select"
+                id="imperial"
+                className="hiddenRadioButton absolute left-hidden"
+              />
               <label
                 htmlFor="imperial"
-                className="text-gunmetal text-base font-semibold"
+                className="text-gunmetal text-base font-semibold customRadioButton customRadioButtonImperial"
               >
                 Imperial
               </label>
             </div>
           </div>
-          <div>
-            <div>
+          <div className="flex flex-col gap-4">
+            <div className="relative">
               <label
                 htmlFor="height"
-                className="block text-darkGrey text-base "
+                className="block text-darkGrey text-base text-left"
               >
                 Height
               </label>
               <input
-                type="text"
+                type="number"
                 name="height"
                 id="height"
-                className="w-full p-2 mt-2 rounded-md"
+                className="w-full py-5 pl-6 pr-20 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
               />
+              <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
+                cm
+              </p>
             </div>
-            <div>
-              <label htmlFor="weight" className="block text-darkGrey text-base">
+            <div className="relative">
+              <label
+                htmlFor="weight"
+                className="block text-darkGrey text-base text-left"
+              >
                 Weight
               </label>
               <input
-                type="text"
+                type="number"
                 name="weight"
                 id="weight"
-                className="w-full p-2 mt-2 rounded-md"
+                className="w-full py-5 pl-6 pr-20 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
               />
+              <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
+                kg
+              </p>
             </div>
+          </div>
+          <div className="bmiResult text-left p-8 mt-6 text-white bg-blue">
+            <p className="text-base font-semibold mb-2">Your BMI is...</p>
+            <p className="text-5xl font-semibold mb-6">23.4</p>
+            <p className="text-sm/5">
+              Your BMI suggests you’re a healthy weight. Your ideal weight is
+              between <span className="font-bold">63.3kgs - 85.2kgs</span>.
+            </p>
           </div>
         </form>
       </div>

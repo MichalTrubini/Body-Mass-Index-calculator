@@ -17,6 +17,17 @@ export default {
         "gunmetal": "#253347",
         "darkGrey": "#5E6E85",
       },
+      colors: {
+        'grey': '#D8E2E7',
+        "blue": "#345FF6",
+      },
+      boxShadow: {
+        'base': '16px 32px 56px 0px rgba(143, 174, 207, 0.25)',
+      },
+      spacing: {
+        '42': '168px',
+        'hidden': '-9999px',
+      },
       screens: {
       },
       fontSize: {
