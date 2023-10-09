@@ -11,6 +11,7 @@ export default {
         "gunmetal": "#253347",
         "darkGrey": "#5E6E85",
         "medium-grey": "#7C8798",
+        "lightBlue": "#E7F5FE",
       },
       textColor: {
         "blue": "#345FF6",
@@ -26,7 +27,11 @@ export default {
       },
       spacing: {
         '42': '168px',
-        'hidden': '-9999px',
+        'form': '450px',
+        'desc': '690px',
+      },
+      borderRadius: {
+        'radius': '32px'
       },
       screens: {
       },

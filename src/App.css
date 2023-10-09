@@ -2,9 +2,19 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+h1, h2, h3 {
+  font-weight: 600!important;
+  color: #253347;
+}
+
+p {
+  color: #5E6E85;
+}
+
 .hero {
   background: linear-gradient(290deg, #d6e6fe 0%, rgba(214, 252, 254, 0) 100%);
   border-radius: 0px 0px 35px 35px;
+  max-height: 700px;
 }
 
 .bmiResult {
@@ -14,14 +24,26 @@ body {
 
 .customCheck::before {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   transform: scale(0);
   transition: transform 0.12s ease-in-out;
-  box-shadow: inset 1em 1em #345FF6;
+  box-shadow: inset 1em 1em #345ff6;
 }
 
 .customCheck:checked::before {
   transform: scale(1);
+}
+
+.customCheck:checked {
+  border: none;
+  background-color: rgba(52, 95, 246, 0.15);
+}
+
+
+@media screen and (min-width: 660px) {
+  .bmiResult {
+    border-radius: 16px 100px 100px 16px;
+  }
 }
