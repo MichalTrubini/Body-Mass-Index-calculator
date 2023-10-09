@@ -47,9 +47,43 @@ p {
   margin-top: calc(925px - 100vw);
 }
 
-@media screen and (min-width: 660px) {
+.advice {
+  background: linear-gradient(290deg, #d6e6fe 0%, rgba(214, 252, 254, 0) 100%);
+}
+
+@media screen and (min-width: 640px) {
   .bmiResult {
     border-radius: 16px 100px 100px 16px;
+  }
+
+  .gridAreas {
+    gap: 15px 24px;
+    grid-template-areas:
+      "gender age"
+      "muscle pregnancy"
+      "race race";
+  }
+
+  #gender {
+    grid-area: gender;
+  }
+
+  #age {
+    grid-area: age;
+  }
+
+  #muscle {
+    grid-area: muscle;
+  }
+
+  #pregnancy {
+    grid-area: pregnancy;
+  }
+
+  #race {
+    grid-area: race;
+    max-width: 365px;
+    margin: auto;
   }
 }
 

@@ -4,10 +4,12 @@ import barbellIcon from "../assets/barbell.svg";
 
 const Advice = () => {
   return (
-    <div className="mt-32 px-6 flex flex-col gap-10">
-      <div>
-        <div className="w-16 h-16 bg-pink rounded-full flex justify-center items-center">
-          <img src={foodIcon} alt="moon" />
+    <div className="advice mt-16 px-6 py-14 flex flex-col gap-10 sm:px-10">
+      <div className="sm:flex sm:items-center sm:gap-10">
+        <div>
+          <div className="w-16 h-16 bg-pink rounded-full flex justify-center items-center">
+            <img src={foodIcon} alt="moon" />
+          </div>
         </div>
         <div className="mt-8">
           <h3 className="text-2xl mb-6">Healthy eating</h3>
@@ -18,9 +20,11 @@ const Advice = () => {
         </div>
       </div>
 
-      <div>
-        <div className="w-16 h-16 bg-orange rounded-full flex justify-center items-center">
-          <img src={barbellIcon} alt="moon" />
+      <div className="sm:flex sm:items-center sm:gap-10">
+        <div>
+          <div className="w-16 h-16 bg-orange rounded-full flex justify-center items-center">
+            <img src={barbellIcon} alt="moon" />
+          </div>
         </div>
         <div className="mt-8">
           <h3 className="text-2xl mb-6">Regular exercise</h3>
@@ -31,9 +35,11 @@ const Advice = () => {
         </div>
       </div>
 
-      <div>
-        <div className="w-16 h-16 bg-green rounded-full flex justify-center items-center">
-          <img src={moonIcon} alt="moon" />
+      <div className="sm:flex sm:items-center sm:gap-10">
+        <div>
+          <div className="w-16 h-16 bg-green rounded-full flex justify-center items-center">
+            <img src={moonIcon} alt="moon" />
+          </div>
         </div>
         <div className="mt-8">
           <h3 className="text-2xl mb-6">Adequate sleep</h3>
