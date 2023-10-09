@@ -2,13 +2,15 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-h1, h2, h3 {
-  font-weight: 600!important;
+h1,
+h2,
+h3 {
+  font-weight: 600 !important;
   color: #253347;
 }
 
 p {
-  color: #5E6E85;
+  color: #5e6e85;
 }
 
 .hero {
@@ -41,9 +43,18 @@ p {
   background-color: rgba(52, 95, 246, 0.15);
 }
 
+.marginFix-1 {
+  margin-top: calc(925px - 100vw);
+}
 
 @media screen and (min-width: 660px) {
   .bmiResult {
     border-radius: 16px 100px 100px 16px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero {
+    border-radius: 0px 0px 35px 0px;
   }
 }

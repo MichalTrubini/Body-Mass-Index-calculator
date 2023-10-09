@@ -12,6 +12,9 @@ export default {
         "darkGrey": "#5E6E85",
         "medium-grey": "#7C8798",
         "lightBlue": "#E7F5FE",
+        "pink": "rgba(242, 30, 132, 0.15)",
+        "orange": "rgba(246, 145, 52, 0.15)",
+        "green": "rgba(34, 193, 193, 0.15)",
       },
       textColor: {
         "blue": "#345FF6",
