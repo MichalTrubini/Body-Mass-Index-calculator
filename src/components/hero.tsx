@@ -4,23 +4,76 @@ import siteIcon from "../assets/site.png";
 const Hero = () => {
   const [measure, setMeasure] = useState("metric");
 
+  const [data, setData] = useState({
+    metric: { heightOne: null, weightOne: null },
+    imperial: {
+      height: { heightOne: null, heightTwo: null },
+      weight: { weightOne: null, weightTwo: null },
+    },
+  });
+
+  const inputHandler = (e) => {
+    if (measure === "metric") {
+      setData({
+        ...data,
+        metric: { ...data.metric, [e.target.id]: e.target.value },
+        imperial: {
+          height: { heightOne: null, heightTwo: null },
+          weight: { weightOne: null, weightTwo: null },
+        },
+      });
+    } else {
+      setData({
+        ...data,
+        imperial: {
+          ...data.imperial,
+          height: { ...data.imperial.height, [e.target.id]: e.target.value },
+        },
+      });
+    }
+  };
+
+  const getValue = (elementID:string) => {
+
+    let value = "";
+
+    if (measure === "metric") {
+      if (elementID === "heightOne" || elementID === "weightOne") {
+        value = data.metric[elementID] || "";
+      }
+    }
+
+    if (measure === "imperial") {
+      if (elementID === "heightOne" || elementID === "heightTwo") {
+        value = data.imperial.height[elementID] || "";
+      }
+      if (elementID === "weightOne" || elementID === "weightTwo") {
+        value = data.imperial.weight[elementID] || "";
+      }
+    }
+    return value;
+  };
+
   return (
-    <section className="text-center ">
-      <div className="hero px-6 pt-8 pb-52 sm:px-10 sm:pb-80 lg:flex lg:w-1/2 lg:pb-[140px] lg:relative">
-        <div className="md:flex md:flex-col md:items-center lg:items-start">
+    <section className="text-center lg:relative">
+      <div className="hero px-6 pt-8 pb-52 sm:px-10 sm:pb-80 lg:flex lg:w-2/3 lg:pb-[140px] xl:px-[140px] xl:pt-[75px] xl:pb-[200px]">
+        <div className="md:flex md:flex-col md:items-center lg:items-start lg:w-full lg:min-w-[600px] ">
           <img src={siteIcon} alt="site icon" className="w-10 inline" />
-          <h1 className="mt-6 mb-6 text-5xl/[53px] font-semibold sm:mt-10 md:w-96 lg:text-left lg:mt-20">
+          <h1 className="mt-6 mb-6 text-5xl/[53px] font-semibold sm:mt-10 md:w-96 lg:text-left lg:mt-20 xl:mt-[127px] lg:text-[64px]/[70px] xl:w-[75%] lg:mb-9">
             Body Mass Index Calculator
           </h1>
-          <p className="text-base/6 text-darkGrey lg:text-left">
+          <p className="text-base/6 text-darkGrey lg:text-left lg:pr-44">
             Better understand your weight in relation to your height using our
             body mass index (BM) calculator. While BMI is not the sole
             determinant of a healthy weight, it offers a valuable starting point
             to evaluate your overall health and well-being.
           </p>
         </div>
-        <div className="bg-white rounded-2xl shadow-base mt-12 sm:mt-16 lg:mt-0 lg:absolute lg:left-[480px]">
-          <form className="p-6 sm:p-8 lg:w-[530px]" autoComplete="off">
+        <div className="bg-white rounded-2xl shadow-base mt-12 sm:mt-16 lg:mt-0 lg:absolute lg:right-10 xl:right-[140px] xl:top-[145px]">
+          <form
+            className="p-6 sm:p-8 lg:w-[500px] xl:w-[564px]"
+            autoComplete="off"
+          >
             <h2 className="mb-6 text-2xl font-semibold tracking-tighter sm:text-left sm:mb-8">
               Enter your details below
             </h2>
@@ -82,7 +135,10 @@ const Hero = () => {
                     <input
                       type="number"
                       name="height"
-                      id="height"
+                      placeholder="0"
+                      id="heightOne"
+                      onChange={inputHandler}
+                      value={getValue('heightOne')}
                       className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                     />
                     <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -94,7 +150,10 @@ const Hero = () => {
                       <input
                         type="number"
                         name="height"
-                        id="height"
+                        placeholder="0"
+                        id="heightTwo"
+                        onChange={inputHandler}
+                        value={getValue('heightTwo')}
                         className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                       />
                       <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -122,7 +181,10 @@ const Hero = () => {
                     <input
                       type="number"
                       name="weight"
-                      id="weight"
+                      placeholder="0"
+                      id="weightOne"
+                      onChange={inputHandler}
+                      value={getValue('weightOne')}
                       className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                     />
                     <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -134,7 +196,10 @@ const Hero = () => {
                       <input
                         type="number"
                         name="height"
-                        id="height"
+                        placeholder="0"
+                        id="weightTwo"
+                        onChange={inputHandler}
+                        value={getValue('weightTwo')}
                         className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                       />
                       <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">

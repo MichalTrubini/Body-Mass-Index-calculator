@@ -6,7 +6,7 @@ import Limitations from "./components/limitations";
 
 function App() {
   return (
-    <main>
+    <main className="xl:max-w-[1440px]">
       <Hero />
       <Interpretation />
       <Advice />

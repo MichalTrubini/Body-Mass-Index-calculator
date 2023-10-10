@@ -38,6 +38,7 @@ export default {
         'radius': '32px'
       },
       screens: {
+        'xl': '1440px',
       },
       fontSize: {
       },
