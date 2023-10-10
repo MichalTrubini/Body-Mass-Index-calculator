@@ -1,10 +1,27 @@
 import { useState } from "react";
 import siteIcon from "../assets/site.png";
 
+type Data = {
+  metric: {
+    heightOne: string | null;
+    weightOne: string | null;
+  };
+  imperial: {
+    height: {
+      heightOne: string | null;
+      heightTwo: string | null;
+    };
+    weight: {
+      weightOne: string | null;
+      weightTwo: string | null;
+    };
+  };
+};
+
 const Hero = () => {
   const [measure, setMeasure] = useState("metric");
 
-  const [data, setData] = useState({
+  const [data, setData] = useState<Data>({
     metric: { heightOne: null, weightOne: null },
     imperial: {
       height: { heightOne: null, heightTwo: null },
@@ -12,29 +29,134 @@ const Hero = () => {
     },
   });
 
-  const inputHandler = (e) => {
+  const hasNullValue = () => {
+    const metricValues = Object.values(data.metric);
+    const imperialValues = Object.values(data.imperial).flatMap((innerObj) =>
+      Object.values(innerObj)
+    );
+
+    if (measure === "metric") {
+      // Check if any metric value is null, an empty string, or "0"
+      return metricValues.some(
+        (value) => value === null || value === "" || value === "0"
+      );
+    } else if (measure === "imperial") {
+      // Check if any imperial value is null
+      return imperialValues.some((value) => value === null || value === "");
+    }
+
+    return false; // Return false for other cases
+  };
+
+  const bmi = () => {
+    let bmi = 0;
+    let height = 0;
+    let weight = 0;
+
+    if (measure === "metric" && !hasNullValue()) {
+      height = Number(data.metric.heightOne) / 100;
+      weight = Number(data.metric.weightOne);
+    } else if (measure === "imperial") {
+      height =
+        (Number(data.imperial.height.heightOne) * 12 +
+          Number(data.imperial.height.heightTwo)) *
+        0.0254;
+      // Convert weightOne from stones to kilograms
+      const weightOneStones = Number(data.imperial.weight.weightOne);
+      const weightOneKilograms = weightOneStones * 6.35029;
+
+      // Convert weightTwo from pounds to kilograms
+      const weightTwoPounds = Number(data.imperial.weight.weightTwo);
+      const weightTwoKilograms = weightTwoPounds * 0.45359237;
+
+      // Combine the two weights to get the total weight in kilograms
+      weight = weightOneKilograms + weightTwoKilograms;
+    }
+
+    if (height !== 0 && weight !== 0) bmi = weight / (height * height);
+    return bmi.toFixed(1);
+  };
+
+  const bmiResult = () => {
+    const bmiValue = Number(bmi());
+
+    if (bmiValue < 18.5) {
+      return "underweight";
+    } else if (bmiValue >= 18.5 && bmiValue <= 24.9) {
+      return "a healthy weight";
+    } else if (bmiValue >= 25 && bmiValue <= 29.9) {
+      return "overweight";
+    } else if (bmiValue >= 30) {
+      return "obese";
+    }
+  };
+  console.log(bmi());
+
+  const suggestedWeight = () => {
+    let minWeight = 0;
+    let maxWeight = 0;
+
+    const minHealthyBmi = 18.5;
+    const maxHealthyBmi = 24.9;
+
+    if (measure === "metric") {
+      const heightSquared = (Number(data.metric.heightOne) / 100) ** 2;
+      minWeight = minHealthyBmi * heightSquared;
+      maxWeight = maxHealthyBmi * heightSquared;
+
+      return `${minWeight.toFixed(1)}kg - ${maxWeight.toFixed(1)}kg`;
+    }
+    if (measure === "imperial") {
+      const heightSquared =
+        ((Number(data.imperial.height.heightOne) * 12 +
+          Number(data.imperial.height.heightTwo)) *
+          0.0254) **
+        2;
+      minWeight = minHealthyBmi * heightSquared;
+      maxWeight = maxHealthyBmi * heightSquared;
+
+      // Convert minWeight and maxWeight to stones and pounds
+      const minWeightStones = Math.floor(minWeight / 6.35029);
+      const minWeightPounds = Math.min(
+        Math.round((minWeight % 6.35029) * 14),
+        13 // Limit pounds to 13 (one stone minus one pound)
+      );
+
+      const maxWeightStones = Math.floor(maxWeight / 6.35029);
+      const maxWeightPounds = Math.min(
+        Math.round((maxWeight % 6.35029) * 14),
+        13 // Limit pounds to 13 (one stone minus one pound)
+      );
+
+      return `${minWeightStones}st ${minWeightPounds}lb - ${maxWeightStones}st ${maxWeightPounds}lb`;
+    }
+  };
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const elName = e.target.name;
+    const elID = e.target.id;
+    const elValue = e.target.value;
+
     if (measure === "metric") {
       setData({
         ...data,
-        metric: { ...data.metric, [e.target.id]: e.target.value },
-        imperial: {
-          height: { heightOne: null, heightTwo: null },
-          weight: { weightOne: null, weightTwo: null },
-        },
+        metric: { ...data.metric, [elID]: elValue },
       });
     } else {
       setData({
         ...data,
         imperial: {
           ...data.imperial,
-          height: { ...data.imperial.height, [e.target.id]: e.target.value },
+          [elName]: {
+            ...(data.imperial as { [key: string]: any })[elName], // Type assertion
+            [elID]: elValue,
+          },
         },
       });
     }
   };
 
-  const getValue = (elementID:string) => {
-
+  const getValue = (elementID: string) => {
     let value = "";
 
     if (measure === "metric") {
@@ -83,13 +205,13 @@ const Hero = () => {
                   type="radio"
                   name="select"
                   id="metric"
-                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck"
+                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck hover:cursor-pointer"
                   onClick={() => setMeasure("metric")}
                   defaultChecked
                 />
                 <label
                   htmlFor="metric"
-                  className="text-gunmetal text-base font-semibold"
+                  className="text-gunmetal text-base font-semibold hover:cursor-pointer"
                 >
                   Metric
                 </label>
@@ -99,12 +221,12 @@ const Hero = () => {
                   type="radio"
                   name="select"
                   id="imperial"
-                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck"
+                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck hover:cursor-pointer"
                   onClick={() => setMeasure("imperial")}
                 />
                 <label
                   htmlFor="imperial"
-                  className="text-gunmetal text-base font-semibold "
+                  className="text-gunmetal text-base font-semibold hover:cursor-pointer"
                 >
                   Imperial
                 </label>
@@ -138,7 +260,7 @@ const Hero = () => {
                       placeholder="0"
                       id="heightOne"
                       onChange={inputHandler}
-                      value={getValue('heightOne')}
+                      value={getValue("heightOne")}
                       className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                     />
                     <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -153,7 +275,7 @@ const Hero = () => {
                         placeholder="0"
                         id="heightTwo"
                         onChange={inputHandler}
-                        value={getValue('heightTwo')}
+                        value={getValue("heightTwo")}
                         className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                       />
                       <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -184,7 +306,7 @@ const Hero = () => {
                       placeholder="0"
                       id="weightOne"
                       onChange={inputHandler}
-                      value={getValue('weightOne')}
+                      value={getValue("weightOne")}
                       className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                     />
                     <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -195,11 +317,11 @@ const Hero = () => {
                     <div className="relative">
                       <input
                         type="number"
-                        name="height"
+                        name="weight"
                         placeholder="0"
                         id="weightTwo"
                         onChange={inputHandler}
-                        value={getValue('weightTwo')}
+                        value={getValue("weightTwo")}
                         className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
                       />
                       <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
@@ -210,22 +332,34 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            <div className="bmiResult text-left p-8 mt-6 bg-blue sm:mt-8 sm:flex sm:items-center sm:gap-12">
-              <div className="md:w-1/2">
-                <p className="text-base font-semibold text-white mb-2">
-                  Your BMI is...
-                </p>
-                <p className="text-5xl font-semibold text-white mb-6 sm:mb-0">
-                  23.4
-                </p>
-              </div>
-              <div className="md:w-1/2">
-                <p className="text-sm/5 text-white">
-                  Your BMI suggests you’re a healthy weight. Your ideal weight
-                  is between{" "}
-                  <span className="font-bold">63.3kgs - 85.2kgs</span>.
-                </p>
-              </div>
+            <div className="bmiResult text-left p-8 mt-6 sm:mt-8">
+              {hasNullValue() ? (
+                <div>
+                  <h3 className="text-white text-2xl mb-4">Welcome!</h3>
+                  <p className="text-white text-sm">
+                    Enter your height and weight and you’ll see your BMI result
+                    here
+                  </p>
+                </div>
+              ) : (
+                <div className="sm:flex sm:items-center sm:gap-12">
+                  <div className="md:w-1/2">
+                    <p className="text-base font-semibold text-white mb-2">
+                      Your BMI is...
+                    </p>
+                    <p className="text-5xl font-semibold text-white mb-6 sm:mb-0">
+                      {bmi()}
+                    </p>
+                  </div>
+                  <div className="md:w-1/2">
+                    <p className="text-sm/5 text-white">
+                      {`Your BMI suggests you’re ${bmiResult()}. Your ideal
+                      weight is between `}
+                      <span className="font-bold">{suggestedWeight()}</span>.
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </form>
         </div>
