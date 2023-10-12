@@ -6,8 +6,8 @@ import raceIcon from "../assets/race.svg";
 
 const Limitations = () => {
   return (
-    <div className="mt-16 mb-[120px] px-6 md:mt-24 md:px-10 mb-[95px] lg:px-[140px] lg:relative lg:mt-[120px]">
-      <div className="mb-20 md:mb-14 lg:absolute lg:w-1/2 lg:pr-40">
+    <div className="mt-16 px-6 md:mt-24 md:px-10 mb-[95px] med:mb-[120px] lg:px-[140px] xl:relative xl:mt-[120px]">
+      <div className="mb-20 md:mb-14 xl:absolute xl:w-1/2 xl:pr-40">
         <h2 className="text-3xl mb-8 sm:text-center lg:text-left lg:text-5xl">Limitations of BMI</h2>
         <p className="sm:text-center lg:text-left">
           Although BMI is often a practical indicator of healthy weight, it is
