@@ -172,7 +172,7 @@ const Hero: React.FC<{ setBMI: (value: string) => void }> = (props) => {
     <section className="text-center lg:relative">
       <div className="hero px-6 pt-8 pb-52 sm:px-10 sm:pb-80 lg:flex lg:w-2/3 lg:pb-[140px] xl:px-[140px] xl:pt-[75px] xl:pb-[200px]">
         <div className="md:flex md:flex-col md:items-center lg:items-start lg:w-full lg:min-w-[600px] ">
-          <img src={siteIcon} alt="site icon" className="w-10 inline lg:w-14" />
+          <img src={siteIcon} alt="site icon" className="w-10 inline lg:w-16" />
           <h1 className="mt-6 mb-6 text-5xl/[53px] font-semibold sm:mt-10 md:w-96 lg:text-left lg:mt-20 xl:mt-[127px] lg:text-[64px]/[70px] xl:w-[75%] lg:mb-9">
             Body Mass Index Calculator
           </h1>

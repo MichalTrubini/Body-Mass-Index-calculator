@@ -146,4 +146,8 @@ input[type="number"]::-webkit-outer-spin-button {
       "age muscle "
       "pregnancy race";
   }
+
+  .hero {
+    max-height: none;
+  }
 }
