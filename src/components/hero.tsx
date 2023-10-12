@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import siteIcon from "../assets/site.png";
+import bmiResult from "../functions/bmiResult";
 
 type Data = {
   metric: {
@@ -18,7 +19,7 @@ type Data = {
   };
 };
 
-const Hero = () => {
+const Hero: React.FC<{ setBMI: (value: string) => void }> = (props) => {
   const [measure, setMeasure] = useState("metric");
 
   const [data, setData] = useState<Data>({
@@ -77,20 +78,11 @@ const Hero = () => {
     return bmi.toFixed(1);
   };
 
-  const bmiResult = () => {
-    const bmiValue = Number(bmi());
+  useEffect(() => {
+    if (bmi() !== '0.0') props.setBMI(bmi());
+  }, [data]);
 
-    if (bmiValue < 18.5) {
-      return "underweight";
-    } else if (bmiValue >= 18.5 && bmiValue <= 24.9) {
-      return "a healthy weight";
-    } else if (bmiValue >= 25 && bmiValue <= 29.9) {
-      return "overweight";
-    } else if (bmiValue >= 30) {
-      return "obese";
-    }
-  };
-  console.log(bmi());
+  const bmiRes = bmiResult(bmi());
 
   const suggestedWeight = () => {
     let minWeight = 0;
@@ -353,7 +345,7 @@ const Hero = () => {
                   </div>
                   <div className="md:w-1/2">
                     <p className="text-sm/5 text-white">
-                      {`Your BMI suggests you’re ${bmiResult()}. Your ideal
+                      {`Your BMI suggests you’re ${bmiRes}. Your ideal
                       weight is between `}
                       <span className="font-bold">{suggestedWeight()}</span>.
                     </p>
