@@ -205,7 +205,7 @@ const Hero = () => {
                   type="radio"
                   name="select"
                   id="metric"
-                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck hover:cursor-pointer"
+                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck hover:cursor-pointer hover:border-blue"
                   onClick={() => setMeasure("metric")}
                   defaultChecked
                 />
@@ -221,7 +221,7 @@ const Hero = () => {
                   type="radio"
                   name="select"
                   id="imperial"
-                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck hover:cursor-pointer"
+                  className="w-8 aspect-square border border-solid border-grey rounded-full appearance-none inline-grid place-content-center customCheck hover:cursor-pointer hover:border-blue"
                   onClick={() => setMeasure("imperial")}
                 />
                 <label
@@ -261,7 +261,7 @@ const Hero = () => {
                       id="heightOne"
                       onChange={inputHandler}
                       value={getValue("heightOne")}
-                      className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
+                      className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue hover:cursor-pointer focus:outline-none focus:border-blue"
                     />
                     <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
                       {measure === "imperial" ? "ft" : "cm"}
@@ -276,7 +276,7 @@ const Hero = () => {
                         id="heightTwo"
                         onChange={inputHandler}
                         value={getValue("heightTwo")}
-                        className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
+                        className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue hover:cursor-pointer focus:outline-none focus:border-blue"
                       />
                       <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
                         in
@@ -307,7 +307,7 @@ const Hero = () => {
                       id="weightOne"
                       onChange={inputHandler}
                       value={getValue("weightOne")}
-                      className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
+                      className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue hover:cursor-pointer focus:outline-none focus:border-blue"
                     />
                     <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
                       {measure === "imperial" ? "st" : "kg"}
@@ -322,7 +322,7 @@ const Hero = () => {
                         id="weightTwo"
                         onChange={inputHandler}
                         value={getValue("weightTwo")}
-                        className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue focus:outline-none focus:border-blue"
+                        className="w-full py-5 pl-6 pr-16 mt-2 border border-solid border-grey rounded-xl text-gunmetal font-semibold text-2xl hover:border-blue hover:cursor-pointer focus:outline-none focus:border-blue"
                       />
                       <p className="text-blue font-semibold text-2xl absolute right-6 bottom-5">
                         lbs

@@ -17,7 +17,7 @@ p {
 }
 
 input::placeholder {
-  color: rgba(37, 51, 71, 0.25)!important;
+  color: rgba(37, 51, 71, 0.25) !important;
 }
 
 .hero {
@@ -104,5 +104,46 @@ input[type="number"]::-webkit-outer-spin-button {
 @media screen and (min-width: 1024px) {
   .hero {
     border-radius: 0px 0px 35px 0px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  #gender {
+    width: 365px;
+    justify-self: center;
+  }
+
+  #age {
+    width: 365px;
+    grid-area: age;
+    justify-self: right;
+    position: relative;
+    left: 200px;
+  }
+
+  #muscle {
+    width: 365px;
+    grid-area: muscle;
+    justify-self: right;
+  }
+
+  #pregnancy {
+    width: 365px;
+    grid-area: pregnancy;
+    justify-self: right;
+  }
+
+  #race {
+    grid-area: race;
+    width: 365px;
+    justify-self: left;
+    margin: unset;
+  }
+
+  .gridAreas {
+    grid-template-areas:
+      "blank gender"
+      "age muscle "
+      "pregnancy race";
   }
 }

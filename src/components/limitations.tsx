@@ -6,17 +6,17 @@ import raceIcon from "../assets/race.svg";
 
 const Limitations = () => {
   return (
-    <div className="mt-16 px-6 md:mt-24 md:px-10">
-      <div className="mb-20 md:mb-14">
-        <h2 className="text-3xl mb-8 sm:text-center">Limitations of BMI</h2>
-        <p className="sm:text-center">
+    <div className="mt-16 mb-[120px] px-6 md:mt-24 md:px-10 mb-[95px] lg:px-[140px] lg:relative lg:mt-[120px]">
+      <div className="mb-20 md:mb-14 lg:absolute lg:w-1/2 lg:pr-40">
+        <h2 className="text-3xl mb-8 sm:text-center lg:text-left lg:text-5xl">Limitations of BMI</h2>
+        <p className="sm:text-center lg:text-left">
           Although BMI is often a practical indicator of healthy weight, it is
           not suited for every person. Specific groups should carefully consider
           their BMI outcomes, and in certain cases, the measurement may not be
           beneficial to use.
         </p>
       </div>
-      <div className="gridAreas flex flex-col gap-4 sm:grid sm:gap-x-4 sm:gap-y-6">
+      <div className="gridAreas flex flex-col gap-4 sm:grid sm:gap-x-4 sm:gap-y-6 lg:gap-8">
         <div className="p-6 shadow-card rounded-2xl" id="gender">
           <div className="flex items-center gap-4 mb-4">
             <img src={genderIcon} alt="gender" />
